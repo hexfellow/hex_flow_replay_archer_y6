@@ -23,9 +23,9 @@ if [ ! -d .venv ]; then
 fi
 source .venv/bin/activate
 
-# Install hex_flow_demo_comp_archer_y6
+# Install hex_flow_template_archer_y6
 rm -rf dist build *.egg-info
-uv pip uninstall hex_flow_demo_comp_archer_y6 || true
+uv pip uninstall hex_flow_template_archer_y6 || true
 uv pip install -e .
 
 cd $CUR_DIR
