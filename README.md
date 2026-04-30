@@ -49,17 +49,17 @@
 ## Architecture diagram
 
 ```
-┌─────────────────┐     arm_state / grip_state     ┌──────────────────────────┐
-│  Robot Source   │ ──────────────────────────────> │  hex-flow-template-      │
-│ (real or MuJoCo)│                                 │  archer-y6               │
-│                 │ <────────────────────────────── │                          │
-└─────────────────┘     arm_ctrl / grip_ctrl        └──────────────────────────┘
-                                                              ▲
-                                                              │ keys
-                                                              │
-                                                      ┌───────┴────────┐
+┌─────────────────┐     arm_state / grip_state      ┌─────────────────────────┐
+│  Robot Source   │ ──────────────────────────────> │  hex-flow-template-     │
+│ (real or MuJoCo)│                                 │  archer-y6              │
+│                 │ <────────────────────────────── │                         │
+└─────────────────┘     arm_ctrl / grip_ctrl        └─────────────────────────┘
+                                                               ▲
+                                                               │ keys
+                                                               │
+                                                      ┌────────┴────────┐
                                                       │ teleop_keyboard │
-                                                      └────────────────┘
+                                                      └─────────────────┘
 ```
 
 The template sits between a robot source (either `hex-flow-robot-archer-y6` for real hardware or `hex-flow-mujoco-archer-y6` for MuJoCo simulation) and a teleop keyboard node. It subscribes to robot state topics and keyboard events, and publishes control commands back to the robot source.
