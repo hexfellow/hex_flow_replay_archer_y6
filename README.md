@@ -164,7 +164,8 @@ nodes = {
         arm_stable_pos="0.0,-1.5,3.0,0.07,0.0,0.0",
         grip_stable_pos="0.5",
         arrive_threshold=0.06,
-        err_threshold=0.02,
+        arm_err_threshold=0.02,
+        grip_err_threshold=0.02,
         required=True,
         hidden=False,
         remap_dict={
@@ -233,7 +234,8 @@ nodes = {
         arm_stable_pos="0.0,-1.5,3.0,0.07,0.0,0.0",
         grip_stable_pos="0.5",
         arrive_threshold=0.06,
-        err_threshold=0.02,
+        arm_err_threshold=0.02,
+        grip_err_threshold=0.02,
         required=True,
         hidden=False,
         remap_dict={
@@ -252,23 +254,24 @@ print(config.export())
 
 ### `default_template_archer_y6_node`
 
-| Parameter          | Type    | Default                                          | Description                                         |
-| ------------------ | ------- | ------------------------------------------------ | --------------------------------------------------- |
-| `name`             | `str`   | `"template_archer_y6"`                           | Node name and remap prefix                          |
-| `rate_hz`          | `float` | `500.0`                                          | Control loop rate in Hz                             |
-| `arm_stable_pos`   | `str`   | `"0.0,-1.5,3.0,0.07,0.0,0.0"`                   | Arm stable joint position (6-DOF comma-separated)   |
-| `grip_stable_pos`  | `str`   | `"0.5"`                                          | Gripper stable position                             |
-| `arm_kp`           | `str`   | `"200.0,200.0,250.0,150.0,100.0,100.0"`          | Arm stiffness gains (6-DOF comma-separated)         |
-| `arm_kd`           | `str`   | `"5.0,5.0,5.0,5.0,2.0,2.0"`                     | Arm damping gains (6-DOF comma-separated)           |
-| `grip_kp`          | `str`   | `"10.0"`                                          | Gripper stiffness gain                              |
-| `grip_kd`          | `str`   | `"0.5"`                                           | Gripper damping gain                                |
-| `arrive_threshold` | `float` | `0.06`                                           | Joint position threshold (rad) to consider arrived  |
-| `err_threshold`    | `float` | `0.02`                                           | Position error limit for safety (lim_err)           |
-| `required`         | `bool`  | `True`                                           | Required for launch                                 |
-| `hidden`           | `bool`  | `False`                                          | Hidden node                                         |
-| `remap_dict`       | `dict`  | `None`                                           | Custom remap; defaults to `{robot_source}/*`        |
-| `robot_source`     | `str`   | `"mujoco_archer_y6"`                             | Robot node to subscribe/publish to                  |
-| `keys_source`      | `str`   | `"teleop_keyboard"`                              | Teleop keyboard node to subscribe to                |
+| Parameter           | Type    | Default                                          | Description                                         |
+| ------------------- | ------- | ------------------------------------------------ | --------------------------------------------------- |
+| `name`              | `str`   | `"template_archer_y6"`                           | Node name and remap prefix                          |
+| `rate_hz`           | `float` | `500.0`                                          | Control loop rate in Hz                             |
+| `arm_stable_pos`    | `str`   | `"0.0,-1.5,3.0,0.07,0.0,0.0"`                   | Arm stable joint position (6-DOF comma-separated)   |
+| `grip_stable_pos`   | `str`   | `"0.5"`                                          | Gripper stable position                             |
+| `arm_kp`            | `str`   | `"200.0,200.0,250.0,150.0,100.0,100.0"`          | Arm stiffness gains (6-DOF comma-separated)         |
+| `arm_kd`            | `str`   | `"5.0,5.0,5.0,5.0,2.0,2.0"`                     | Arm damping gains (6-DOF comma-separated)           |
+| `grip_kp`           | `str`   | `"10.0"`                                          | Gripper stiffness gain                              |
+| `grip_kd`           | `str`   | `"0.5"`                                           | Gripper damping gain                                |
+| `arrive_threshold`  | `float` | `0.06`                                           | Joint position threshold (rad) to consider arrived  |
+| `arm_err_threshold` | `float` | `0.02`                                           | Arm position error limit for safety (lim_err)       |
+| `grip_err_threshold`| `float` | `0.02`                                           | Gripper position error limit for safety (lim_err)   |
+| `required`          | `bool`  | `True`                                           | Required for launch                                 |
+| `hidden`            | `bool`  | `False`                                          | Hidden node                                         |
+| `remap_dict`        | `dict`  | `None`                                           | Custom remap; defaults to `{robot_source}/*`        |
+| `robot_source`      | `str`   | `"mujoco_archer_y6"`                             | Robot node to subscribe/publish to                  |
+| `keys_source`       | `str`   | `"teleop_keyboard"`                              | Teleop keyboard node to subscribe to                |
 
 # 💡 Examples
 
@@ -342,7 +345,8 @@ nodes:
       GRIP_KP: "10.0"
       GRIP_KD: "0.5"
       ARRIVE_THRESHOLD: "0.06"
-      ERR_THRESHOLD: "0.02"
+      ARM_ERR_THRESHOLD: "0.02"
+      GRIP_ERR_THRESHOLD: "0.02"
 ```
 
 ### MuJoCo simulation (500 Hz)
@@ -398,7 +402,8 @@ nodes:
       GRIP_KP: "10.0"
       GRIP_KD: "0.5"
       ARRIVE_THRESHOLD: "0.06"
-      ERR_THRESHOLD: "0.02"
+      ARM_ERR_THRESHOLD: "0.02"
+      GRIP_ERR_THRESHOLD: "0.02"
 ```
 
 # Message Types (FlatBuffer)
@@ -479,17 +484,18 @@ Schema: [`msgs/msg_robot/arm_ctrl.fbs`](https://github.com/hexfellow/hex_util_ms
 
 ## Template Node (`hex-flow-template-archer-y6`)
 
-| Variable           | Type    | Default                                          | Description                                         |
-| ------------------ | ------- | ------------------------------------------------ | --------------------------------------------------- |
-| `RATE_HZ`          | `float` | `500.0`                                          | Control loop rate in Hz                             |
-| `ARM_STABLE_POS`   | `str`   | `"0.0,-1.5,3.0,0.07,0.0,0.0"`                   | Arm stable joint position (6-DOF comma-separated)   |
-| `GRIP_STABLE_POS`  | `str`   | `"0.5"`                                          | Gripper stable position                             |
-| `ARM_KP`           | `str`   | `"200.0,200.0,250.0,150.0,100.0,100.0"`          | Arm stiffness gains (6-DOF comma-separated)         |
-| `ARM_KD`           | `str`   | `"5.0,5.0,5.0,5.0,2.0,2.0"`                     | Arm damping gains (6-DOF comma-separated)           |
-| `GRIP_KP`          | `str`   | `"10.0"`                                          | Gripper stiffness gain                              |
-| `GRIP_KD`          | `str`   | `"0.5"`                                           | Gripper damping gain                                |
-| `ARRIVE_THRESHOLD` | `float` | `0.06`                                           | Joint position threshold (rad) to consider arrived  |
-| `ERR_THRESHOLD`    | `float` | `0.02`                                           | Position error limit for safety (`lim_err`)         |
+| Variable             | Type    | Default                                          | Description                                         |
+| -------------------- | ------- | ------------------------------------------------ | --------------------------------------------------- |
+| `RATE_HZ`            | `float` | `500.0`                                          | Control loop rate in Hz                             |
+| `ARM_STABLE_POS`     | `str`   | `"0.0,-1.5,3.0,0.07,0.0,0.0"`                   | Arm stable joint position (6-DOF comma-separated)   |
+| `GRIP_STABLE_POS`    | `str`   | `"0.5"`                                          | Gripper stable position                             |
+| `ARM_KP`             | `str`   | `"200.0,200.0,250.0,150.0,100.0,100.0"`          | Arm stiffness gains (6-DOF comma-separated)         |
+| `ARM_KD`             | `str`   | `"5.0,5.0,5.0,5.0,2.0,2.0"`                     | Arm damping gains (6-DOF comma-separated)           |
+| `GRIP_KP`            | `str`   | `"10.0"`                                          | Gripper stiffness gain                              |
+| `GRIP_KD`            | `str`   | `"0.5"`                                           | Gripper damping gain                                |
+| `ARRIVE_THRESHOLD`   | `float` | `0.06`                                           | Joint position threshold (rad) to consider arrived  |
+| `ARM_ERR_THRESHOLD`  | `float` | `0.02`                                           | Arm position error limit for safety (`lim_err`)     |
+| `GRIP_ERR_THRESHOLD` | `float` | `0.02`                                           | Gripper position error limit for safety (`lim_err`) |
 
 # Architecture
 
