@@ -2,7 +2,7 @@ include LICENSE
 include README.md
 include requirements.txt
 
-recursive-include hex_flow_template_archer_y6 *
+recursive-include hex_flow_replay_archer_y6 *
 
 recursive-exclude * *.pyc
 recursive-exclude * .DS_Store

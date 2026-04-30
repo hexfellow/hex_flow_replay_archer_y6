@@ -6,8 +6,8 @@
 # Date  : 2026-04-28
 ################################################################
 
-from .config_default import default_template_archer_y6_node
+from .config_default import default_replay_archer_y6_node
 
 __all__ = [
-    "default_template_archer_y6_node",
+    "default_replay_archer_y6_node",
 ]

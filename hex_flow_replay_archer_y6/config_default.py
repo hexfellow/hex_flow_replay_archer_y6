@@ -8,15 +8,15 @@
 
 from hex_flow_core import NodeConfig
 
-_BUILD_CMD = "pip install hex_flow_template_archer_y6"
+_BUILD_CMD = "pip install hex_flow_replay_archer_y6"
 
 # ──────────────────────────────────────────────────────────────
 #  Comp Control
 # ──────────────────────────────────────────────────────────────
 
 
-def default_template_archer_y6_node(
-    name: str = "template_archer_y6",
+def default_replay_archer_y6_node(
+    name: str = "replay_archer_y6",
     rate_hz: float = 500.0,
     arm_stable_pos: str = "0.0,-1.5,3.0,0.07,0.0,0.0",
     grip_stable_pos: str = "0.5",
@@ -27,6 +27,8 @@ def default_template_archer_y6_node(
     arrive_threshold: float = 0.06,
     arm_err_threshold: float = 0.02,
     grip_err_threshold: float = 0.02,
+    mcap_path: str = "",
+    loop_count: int = 1,
     required: bool = True,
     hidden: bool = False,
     remap_dict: dict[str, str] | None = None,
@@ -45,7 +47,7 @@ def default_template_archer_y6_node(
     return NodeConfig(
         name=name,
         build_cmd=_BUILD_CMD,
-        run_cmd="hex-flow-template-archer-y6",
+        run_cmd="hex-flow-replay-archer-y6",
         required=required,
         hidden=hidden,
         remap_dict=remap_dict,
@@ -60,5 +62,7 @@ def default_template_archer_y6_node(
             "ARM_KD": arm_kd,
             "GRIP_KP": grip_kp,
             "GRIP_KD": grip_kd,
+            "MCAP_PATH": mcap_path,
+            "LOOP_COUNT": str(loop_count),
         },
     )

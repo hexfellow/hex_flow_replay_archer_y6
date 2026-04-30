@@ -3,10 +3,10 @@ requires = ["setuptools >= 61.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "hex_flow_template_archer_y6"
+name = "hex_flow_replay_archer_y6"
 version = "0.0.1-alpha.1"
 authors = [{ name = "Dong Zhaorui", email = "847235539@qq.com" }]
-description = "Hex Flow Template for Archer Y6"
+description = "Hex Flow Replay for Archer Y6"
 license = "Apache-2.0"
 readme = "README.md"
 requires-python = ">=3.10"
@@ -15,13 +15,16 @@ dependencies = [
     "hex_flow_node_robot>=0.0.0,<0.1.0",
     "hex_flow_node_teleop>=0.0.0,<0.1.0",
     "hex_flow_node_mujoco>=0.0.0,<0.1.0",
+    "hex_flow_node_data>=0.0.0,<0.1.0",
+    "hex_util_data>=0.0.0,<0.1.0",
+    "hex_util_robot>=0.0.0,<0.1.0",
 ]
 
 [dependency-groups]
 dev = ["pytest>=8.1.1", "ruff>=0.9.1"]
 
 [project.scripts]
-hex-flow-template-archer-y6 = "hex_flow_template_archer_y6.main:main"
+hex-flow-replay-archer-y6 = "hex_flow_replay_archer_y6.main:main"
 
 [tool.ruff.lint]
 extend-select = [

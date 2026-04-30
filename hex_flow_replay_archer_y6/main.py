@@ -6,13 +6,13 @@
 # Date  : 2026-04-28
 ################################################################
 
-from .template_archer_y6 import HexFlowTemplateArcherY6
+from .replay_archer_y6 import HexFlowReplayArcherY6
 
 
 def main():
-    template = HexFlowTemplateArcherY6()
-    template.start()
-    template.run()
+    replay = HexFlowReplayArcherY6()
+    replay.start()
+    replay.run()
 
 
 if __name__ == "__main__":
