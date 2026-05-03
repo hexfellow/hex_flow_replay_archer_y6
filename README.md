@@ -55,11 +55,11 @@
 ## Architecture diagram
 
 ```
-┌─────────────────┐     arm_state / grip_state     ┌────────────────────────┐
+┌─────────────────┐     arm_state / grip_state      ┌────────────────────────┐
 │  Robot Source   │ ──────────────────────────────> │  hex-flow-replay-      │
-│ (real or MuJoCo)│                                │  archer-y6             │
+│ (real or MuJoCo)│                                 │  archer-y6             │
 │                 │ <─────────────────────────────  │                        │
-└─────────────────┘     arm_ctrl / grip_ctrl       └──────┬────────┬────────┘
+└─────────────────┘     arm_ctrl / grip_ctrl        └─────┬────────┬─────────┘
                                                           │ record │ keys
                                                           │        │
                                            ┌──────────────▼──┐ ┌───▼─────────┐
